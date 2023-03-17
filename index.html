@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Styles/index.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Desh Capital LLC | Questions</title>
+  <link rel="shortcut icon" type="image/png" href="./Images/Logo.jpg">
+
+</head>
+
+<body>
+
+  <div class="form-container">
+    <h1 class="form-title">Welcome to <br> Desh Capital LLC</h1>
+    <form>
+      <input type="text" name="name" placeholder='Please Enter Your Name'><br><br>
+      <textarea name="question" placeholder="Please Enter Your Question Here..." required></textarea><br><br>
+      <button type="submit" id="sub" class="btns" data-toggle="modal" data-target="#myModal">Submit</button>
+    </form>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Submit Successfull</h4>
+        </div>
+        <div class="modal-body">
+          <small>please wait...</small>
+          <h1 id="msg" class="success"></h1>
+          <P>Please visit our website. For visiting <a href="https://deshcapitalllc.com/">Click Here</a></P>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+
+
+  <script>
+    let form = document.querySelector("form");
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.querySelector("#sub").value = "Submiting..";
+      let data = new FormData(form);
+      fetch('https://script.google.com/macros/s/AKfycbxfaCSdL5roo-bSy-rlVPd6WZt8g7RGKLiKjF5mvtD0O8p0CvAd1KszN-gUru87Hagu/exec', {
+        method: "POST",
+        body: data
+      })
+        .then(res => res.text())
+        .then(data => {
+          document.querySelector("#msg").innerHTML = data;
+          document.querySelector("#sub").value = "Submit"
+        });
+    })
+
+  </script>
+</body>
+
+</html>
